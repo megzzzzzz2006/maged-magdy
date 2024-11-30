@@ -1,0 +1,84 @@
+import 'dart:ffi';
+import 'dart:io';
+
+void main() {
+  var operation;
+  do {
+    print("PUT YOUR CREDIT CARD IN THE MACHINE PLEASE");
+    print("1.Putted succesfully");
+    print("2.It's stuck,..please wait");
+    int enter = int.parse(stdin.readLineSync()!);
+    switch (enter) {
+      case 1:
+        int attempt = 0;
+        int max_attempt = 3;
+        if (attempt < max_attempt) {
+          print("Enter your PIN code please.");
+
+          int PIN = int.parse(stdin.readLineSync()!);
+          if (PIN >= 1000 && PIN <= 9999) {
+            print("1. Check Balance");
+            print("2. Deposit Money");
+            print("3. Withdraw Money");
+            print("4. Exit.");
+//==========================\\
+            double bank_balance = 1000.0;
+            print("Choose the operation please...");
+            String answer = stdin.readLineSync()!;
+            int operation = int.parse(stdin.readLineSync()!);
+            if (operation > 4) {
+              print("Operation is invalid!!!");
+              print("Try again please:)");
+            }
+
+//==========================\\
+
+            switch (operation) {
+              case 1:
+                print("Your bank balance is $bank_balance L.E");
+                print("Thanks for using our Services:)");
+                break;
+//==========================\\
+              case 2:
+                print("Money Deposit:-");
+                print("Your bank balance is $bank_balance L.E");
+                print("How much money do you want to deposit??");
+                double money_deposited = double.parse(stdin.readLineSync()!);
+                bank_balance += money_deposited;
+                print("Your updated bank balance is $bank_balance L.E");
+                print("Thanks for using our Services:)");
+                break;
+//==========================\\
+              case 3:
+                print("Money Withdrawal:-");
+                print("Your bank balance is: $bank_balance L.E");
+                print("How much money do you want to withdraw??");
+                double money_withdraw = double.parse(stdin.readLineSync()!);
+                bank_balance -= money_withdraw;
+                print("Your updated bank balance is: $bank_balance L.E");
+                print("Thanks for using our Services:)");
+                break;
+//===========================\\
+              case 4:
+                print("Exited...");
+                print("=================================");
+                print("Thanks for using our Services:)");
+                print("=================================");
+                break;
+              default:
+                print("invalid.....try again");
+            }
+          } else if (PIN > 9999) {
+            print("pasword is inncorrect try again.....");
+            attempt++;
+            if (attempt == 3) {
+              operation = 4;
+            }
+          }
+        }
+
+      case 2:
+        print("Waiting for you sir....try again");
+    }
+  } while (operation != 4);
+}
